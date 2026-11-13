@@ -1,0 +1,2117 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>دليل أكريغاتور</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email>
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+<author
+><firstname
+>بلاغوفيست</firstname
+> <surname
+>بيتروف</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2026-07-15</date>
+<releaseinfo
+>تطبيقات 26.12</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>أكريغاتور برنامج لقراءة تلقيمات <acronym
+>RSS</acronym
+> وأخبار الإنترنت الأخرى. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>أكريغاتور</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>مقدمة</title>
+
+<sect1 id="what-is-akregator">
+<title
+>ما هو أكريغاتور؟</title>
+
+<para
+>أكريغاتور تطبيق من كيدي لقراءة تلقيمات أخبار الإنترنت. يملك واجهة قوية وسهلة الاستخدام لقراءة التلقيمات وإدارتها.</para>
+
+<para
+>أكريغاتور برنامج خفيف وسريع لعرض عناصر الأخبار التي توفرها التلقيمات، ويدعم جميع إصدارات تلقيمات <acronym
+>RSS</acronym
+> و Atom الشائعة. واجهته تشبه واجهات برامج البريد الإلكتروني، لذا نأمل أن تكون مألوفة جدا للمستخدم. تتضمن الميزات المفيدة البحث داخل عناوين المقالات، وإدارة التلقيمات في مجلدات، وضبط تفضيلات الأرشفة. يمكن عرض التلقيمات بطريقة مشابهة لرسائل البريد الإلكتروني. يمكن عرض مواقع الويب المتعلقة بالتلقيمة في متصفح أكريغاتور المضمن أو، حسب اختيار المستخدم، فتحها في متصفح خارجي.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>تلقيمات <acronym
+>RSS</acronym
+> و Atom</title>
+
+<para
+>إن <acronym
+>RSS</acronym
+> (تلقيم مبسط جدا) تنسيق يعتمد على &XML; يُستخدم لنشر الأخبار أو المقالات بصيغة مقروءة آليًا. يُسمى ملف <acronym
+>RSS</acronym
+> أو Atom أيضًا بالتلقيمة. يُطلق على البرنامج الذي يمكن استخدامه لقراءة هذه التلقيمات اسم قارئ التلقيمات أو المجمع، ومن هنا جاء عنوان التطبيق، أكريغاتور.</para>
+
+<para
+>يستخرج أكريغاتور آليًا العناصر الجديدة من التلقيمة ويعرضها في نموذج سهل القراءة للمستخدم. يمكن للمستخدم بالتالي توفير الوقت مع المواقع التي يزورها بانتظام، حيث لم يعد بحاجة للتحقق يدويًا من توفر معلومات جديدة.</para>
+<para
+>يتوفر <acronym
+>RSS</acronym
+> بإصدارات مختلفة غير متوافقة مع بعضها البعض (هذا الوضع نتج عن تنافس الشركات): <acronym
+>RSS</acronym
+> 0.9 و <acronym
+>RSS</acronym
+> 1.0 و <acronym
+>RSS</acronym
+> 2.0. إن Atom هي أيضًا لغة تلقيم تعتمد على &XML; أُعيد تصميمها لتناسب احتياجات المدونين ومواقع الأخبار. تحاول Atom استبدال تلقيمات <acronym
+>RSS</acronym
+> وإزالة عدم اليقين بشأن حالات عدم التوافق في إصدارات <acronym
+>RSS</acronym
+> المختلفة.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>بدء سريع مع أكريغاتور</title>
+
+<para
+>يصف هذا القسم كيفية البدء في استخدام أكريغاتور. ويشرح واجهة المستخدم ويوضح لك كيفية إضافة تلقيمتك الخاصة إلى القائمة. هذا القسم مثير للاهتمام بشكل خاص إذا لم تكن مألوفًا بعد بمفهوم <acronym
+>RSS</acronym
+>/Atom العام ومجمع التلقيمات. </para>
+
+<sect1 id="main-window">
+<title
+>النافذة الرئيسة</title>
+<!--part of kontact
+say how to start it -->
+<para
+>عند تشغيل أكريغاتور لأول مرة، تظهر نافذته الرئيسة: <screenshot>
+<screeninfo
+>نافذة أكريغاتور الرئيسة</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>نافذة أكريغاتور الرئيسة</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>تتكون النافذة الرئيسة من قائمة التلقيمات وقائمة المقالات وعارض المقالات. </para>
+<para
+>قائمة التلقيمات موجودة على اليسار. في الشجرة، لديك تلقيمات أخبار يمكنك تحديدها. تلقيمة الأخبار هي مجموعة من المقالات: على سبيل المثال، الأخبار الأخيرة لموقع إخباري أو المدخلات الجديدة لمدونة. تحتوي القائمة المبدئية على تلقيمات متعلقة بمشروع كيدي، ولكن بالطبع يمكنك إضافة تلقيماتك الخاصة وإزالة التلقيمات التي لا تهمك. </para>
+<para
+>في الجزء العلوي الأيمن توجد قائمة المقالات. تحتوي على جميع مقالات التلقيمة المحددة في قائمة التلقيمات (إذا كانت فارغة، يجب عليك أولًا جلب التلقيمة). تعرض القائمة عناوين المقالات وتاريخ نشرها. تُعرض أحدث المقالات في الأعلى مبدئيًا. <screenshot>
+<screeninfo
+>قائمة المقالات</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>قائمة المقالات لتلقيمة واحدة</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>إذا حددت مقالًا، فسيُعرض في عارض المقالات في الجزء السفلي الأيمن من النافذة. اعتمادًا على التلقيمة، فإنه يحتوي إما على عنوان فقط، أو ملخص قصير، أو محتوى المقال كاملًا. <screenshot>
+<screeninfo
+>قراءة مقال من كوكب كيدي</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>قراءة مقال من كوكب كيدي</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>إضافة تلقيم</title>
+<para
+>يوفر لك أكريغاتور بعض التلقيمات المبدئية المتعلقة بكيدي - وبالطبع، قد ترغب في إضافة تلقيماتك الخاصة. المرشحون الجيدون هم مواقع الأخبار التي تزورها بانتظام.</para>
+
+<itemizedlist>
+<listitem
+><para
+>اذهب إلى قائمة <guimenu
+>تلقيمة</guimenu
+> واختر <guimenuitem
+>أضف تلقيمة...</guimenuitem
+> أو استخدم اختصار لوحة المفاتيح المبدئي (<keycap
+>Ins</keycap
+>). يظهر الحوار التالي، مع سطر إدخال باسم <guilabel
+>عنوان التلقيمة:</guilabel
+>. <screenshot>
+<screeninfo
+>إضافة تلقيمة جديدة</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>إضافة تلقيمة جديدة</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>أدخل <userinput
+>planet.ubuntu.com</userinput
+> أو <userinput
+>http://planet.ubuntu.com</userinput
+> في محرر السطر بجانب <guilabel
+>عنوان التلقيمة</guilabel
+> وانقر فوق <guibutton
+>موافق</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>يظهر حوار إعدادات التلقيمة ويمكنك تعديل الخيارات المبدئية. عندما تكون راضيًا عن إعدادات التلقيمة، انقر فوق <guibutton
+>موافق</guibutton
+> مرة أخرى. <screenshot>
+<screeninfo
+>حوار خصائص التلقيمة</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>حوار خصائص التلقيمة</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>الآن أُضيف كوكب أوبنتو إلى قائمة التلقيمات الخاصة بك. </para
+> </listitem>
+</itemizedlist>
+<para
+>هناك طرق أخرى متعددة للعثور على تلقيمات مثيرة للاهتمام وإضافتها. داخل كيدي، ستعرض مواقع الويب التي تُتصفح بواسطة كنكرر أيقونة <quote
+>RSS</quote
+> المميزة <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> في أسفل اليمين إذا اكتُشفت تلقيمة أخبار متوافقة في موقع الويب. ما عليك سوى النقر بزر الفأرة الأيسر على الأيقونة واختيار <guimenuitem
+>أضف تلقيمة إلى أكريغاتور</guimenuitem
+>: <screenshot
+> <screeninfo
+>العثور على التلقيمات آليًا عبر كنكرر</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>العثور على التلقيمات آليًا عبر كنكرر</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> في الصفحات التي تحتوي على <quote
+>RSS</quote
+> أو هذه الأيقونة <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>، انقر بزر الفأرة الأيمن على الأيقونة واختر من القائمة السياقية <guimenuitem
+>انسخ عنوان الرابط</guimenuitem
+>: <screenshot>
+      <screeninfo
+>العثور على التلقيمات آليًا عبر كنكرر</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>العثور على التلقيمات آليًا عبر كنكرر</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>انتقل إلى أكريغاتور، وحدد <guimenuitem
+>أضف تلقيمة...</guimenuitem
+> وسيُملأ <guilabel
+>عنوان التلقيمة</guilabel
+> بعنوان الرابط. </para>
+
+<para
+>تظهر جميع التلقيمات المضافة باستخدام هذه الإجراءات تحت مجلد <guilabel
+>التلقيمات المستوردة</guilabel
+> في قائمة التلقيمات، ومن هناك يمكنك استخدام الفأرة لسحبها إلى مجلد مختلف. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>إنشاء مجلد</title>
+<para
+>بعد إضافة تلقيماتك الخاصة، قد ترغب في تجميعها بطريقة ما، بدلًا من تركها غير مرتبة. لذا دعنا ننشئ مجلدًا لتلقيمة كوكب أوبنتو التي أضفناها للتو:</para>
+<itemizedlist>
+<listitem
+><para
+>حدد المجلد الأب للمجلد الجديد. في هذا المثال، نحدد <guilabel
+>كل التلقيمات</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>افتح <menuchoice
+><guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>مجلد جديد...</guimenuitem
+></menuchoice
+>. أدخل <userinput
+>أخبار</userinput
+> (أو اسمًا أكثر ملاءمة لفئة التلقيمة) في محرر السطر واختر <guibutton
+>موافق</guibutton
+>. <screenshot>
+<screeninfo
+>حوار مجلد جديد</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>حوار مجلد جديد</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>الآن يمكنك سحب تلقيمة كوكب أوبنتو إلى المجلد الجديد. <screenshot>
+<screeninfo
+>مجلد الأخبار في قائمة التلقيمات</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>مجلد الأخبار في قائمة التلقيمات</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>التصفح داخل أكريغاتور</title>
+<para
+>عند قراءة مقالات التلقيمة، غالبًا ما ترغب في قراءة صفحة الويب التي تنتمي إليها المقالة: فبعض المقالات لا تحتوي إلا على العنوان، وليس المحتوى الفعلي. في هذه الحالة، تحتاج إلى زيارة صفحة الويب لقراءة المقال كاملًا. أو ربما يشير المقال إلى موقع ويب معين، أو أنك تقرأ مدونة وترغب في التعليق على مدخلة. لهذه الحالات، يحتوي أكريغاتور على متصفح ويب بسيط. كلما تتبعت رابطًا في عارض المقالات، يفتح أكريغاتور الرابط في لسان جديد مبدئيًا.</para>
+<note
+><para
+>لاحظ أن المتصفح في أكريغاتور ليس مخصصًا ليحل محل متصفح الويب المفضل لديك. بل هو مخصص لقراءة المقالات، أو التعليق عليها، أو متابعة رابط بسرعة. وهو ليس مخصصًا لتصفح الويب بشكل عام. فهو يفتقر إلى العديد من الميزات التي توفرها متصفحات الويب الكاملة.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="online-accounts">
+<title
+>حسابات الإنترنت</title>
+
+<para
+>إلى جانب الاشتراك في التلقيمات الفردية، يستطيع أكريغاتور الاتصال بخدمة قارئ تلقيمات على الإنترنت وعكس اشتراكاتها. يُدعم حالياً نوع حساب واحد: <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>، وهو قارئ تلقيمات مستضاف ذاتياً. عند إعداد حساب، ينشئ أكريغاتور مجلداً باسم <quote
+><replaceable
+>اسم الحساب</replaceable
+> (Miniflux)</quote
+> يعكس تصنيفات الخادم وتلقيماته. تُجلب المقالات عبر <acronym
+>API</acronym
+> الخدمة بدلاً من تنزيل التلقيمات مباشرة، وتُزامَن حالة القراءة في الاتجاهين.</para>
+
+<sect1 id="adding-online-account">
+<title
+>إضافة حساب على الإنترنت</title>
+
+<para
+>اختر <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>أضف حساباً على الإنترنت...</guimenuitem
+></menuchoice
+> لفتح معالج الحساب. في الصفحة الأولى، اختر نوع الحساب. تحتوي الصفحة الثانية على إعدادات النوع المحدد. بالنسبة لحساب Miniflux فهي:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>اسم الحساب:</guilabel
+></term>
+<listitem
+><para
+>اسم من اختيارك. يُستخدم لمجلد الحساب في قائمة التلقيمات ولا يمكن تغييره لاحقاً.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>مسار الخادم:</guilabel
+></term>
+<listitem
+><para
+>عنوان خادم Miniflux الخاص بك، مثلاً <userinput
+>https://miniflux.example.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>رمز API:</guilabel
+></term>
+<listitem
+><para
+>رمز <acronym
+>API</acronym
+> لمستخدم Miniflux الخاص بك. يمكنك إنشاء واحد في واجهة Miniflux على الويب تحت <menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>مفاتيح API</guimenuitem
+></menuchoice
+>. يخزّن أكريغاتور الرمز في محفظة النظام، وليس في ملف نصي عادي.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>استخدم زر <guibutton
+>اختبر الاتصال</guibutton
+> للتحقق من عنوان الخادم والرمز قبل إنهاء المعالج. بعد إنهاء المعالج، يجلب أكريغاتور التصنيفات والتلقيمات من الخادم ويبدأ باستيراد المقالات غير المقروءة.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>كيف تعمل المزامنة</title>
+
+<para
+>تُحدَّث تلقيمات الحساب على الإنترنت وفق الفترة الزمنية المضبوطة في إعدادات <link linkend="general-tab"
+>عام</link
+>، فتجلب المقالات غير المقروءة من الخادم. للحفاظ على استجابة واجهة المستخدم، يستورد كل تحديث 1000 مقالة غير مقروءة كحد أقصى لكل تلقيمة.</para>
+
+<para
+>عند تعليم مقالة كمقروءة أو غير مقروءة، يُرسَل التغيير إلى الخادم بعد تأخير قصير، بحيث تؤدي قراءة عدة مقالات متتالية إلى طلب واحد. تعليم مقالة كـ<quote
+>مهمة</quote
+> يبدّل النجمة (العلامة المرجعية) للمقالة على الخادم.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>إدارة الحسابات</title>
+
+<para
+>تُدار الحسابات على الإنترنت في صفحة <link linkend="accounts-tab"
+>الحسابات</link
+> من حوار الضبط، حيث يمكن إضافة الحسابات وتعديلها وإزالتها. بالنسبة لحساب موجود، يمكن تغيير عنوان الخادم ورمز <acronym
+>API</acronym
+>؛ يسري التغيير فوراً ويطلق مزامنة جديدة.</para>
+
+<para
+>إزالة حساب تحذف مجلده من قائمة التلقيمات وضبطه وبيانات اعتماده المخزنة. لا يتأثر الحساب والمقالات على الخادم. حذف مجلد الحساب مباشرة من قائمة التلقيمات له الأثر نفسه.</para>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>ضبط أكريغاتور</title>
+<para
+>تُدرج معظم خيارات أكريغاتور في حوار ضبط أكريغاتور. يمكن العثور على حوار الضبط في القائمة تحت <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط أكريغاتور...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>عامّ</title>
+<para
+>يحتوي لسان عام على الخيارات الأساسية لأكريغاتور والتي لا يمكن تصنيفها في مكان آخر.</para>
+<screenshot>
+<screeninfo
+>لسان عام</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان عام</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>عالمي</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أظهر أيقونة الصينية</guilabel
+></term>
+<listitem
+><para
+>أظهر أيقونة أكريغاتور في صينية النظام.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أظهر المقالات غير المقروءة في شريط المهام</guilabel
+></term>
+<listitem
+><para
+>يحدد ما إذا كان يجب إظهار عدد المقالات غير المقروءة في عنصر شريط مهام النظام.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أخفِ التلقيمات التي لا تحتوي على مقالات غير مقروءة</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد، يخفي التلقيمات التي لا تحتوي على مقالات غير مقروءة.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أقفل التلقيمات في مكانها</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد، يمنع نقل التلقيمات في القائمة، وستُقفل جميع التلقيمات في مكانها.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>وسّع آليًا المجلدات التي تحتوي على مقالات غير مقروءة</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد، يوسع المجلدات التي تحتوي على مقالات غير مقروءة آليًا.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>استخدم الإشعارات لجميع التلقيمات</guilabel
+></term>
+<listitem
+><para
+>اضبط إشعارات عالمية لجميع التلقيمات. سيتجاوز هذا الإعداد قيمة الإشعارات الفردية لكل تلقيمة. عند تمكينه، سيخطرك أكريغاتور بجميع المقالات الجديدة التي جُلبت في أي تلقيمة. إذا كنت ترغب فقط في تمكين الإشعارات لبعض التلقيمات (وليس كلها)، فاترك هذا الخيار معطلًا ومكّن الإشعارات لكل تلقيمة محددة باستخدام حوار خصائص التلقيمة الفردية.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>استخدم الجلب بفترات زمنية</guilabel
+></term>
+<listitem
+><para
+>إذا لم يُحدد هذا، فسيُعطل الفحص الدوري. ومع ذلك، إذا حُدد هذا، يمكنك الضبط في <guilabel
+>اجلب التلقيمات كل:</guilabel
+> الفترة التي سيتحقق فيها أكريغاتور آليًا من مدخلات التلقيمة الجديدة. لاحظ أن جلب المقالات يولد حركة مرور وبالتالي قد يكون مكلفًا للمزود الذي يستضيف التلقيمة التي تقرؤها. قد تحظر بعض المواقع الاتصالات من حاسوبك إذا حاولت جلب التلقيمة بشكل متكرر. بشكل عام، 30 دقيقة خيار جيد. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اجلب التلقيمات كل:</guilabel
+></term>
+<listitem
+><para
+>يُمكّن هذا عندما يكون <guilabel
+>استخدم الجلب بفترات زمنية</guilabel
+> محددًا. يمكنك تحديد فترة زمنية، يتم بعدها فحص التلقيمات بحثًا عن مقالات جديدة. الإعداد المبدئي هو 30 دقيقة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>بدء التشغيل</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>ميّز جميع التلقيمات كمقروءة عند بدء التشغيل</guilabel
+></term>
+<listitem
+><para
+>عند تمكينه، يميز أكريغاتور جميع المقالات كمقروءة عند تشغيله.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اجلب جميع التلقيمات عند بدء التشغيل</guilabel
+></term>
+<listitem
+><para
+>عند تمكينه، يجلب أكريغاتور جميع التلقيمات مباشرة بعد البدء.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الشبكة</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>استخدم خبيئة المتصفح (حركة مرور أقل للشبكة)</guilabel
+></term>
+<listitem
+><para
+>عند تمكينه، تُستخدم إعدادات خبيئة المتصفح الخاصة بكيدي عند تحديث التلقيمات. يمكنك ضبط خبيئة متصفح كيدي في حوار ضبط كنكرر.</para>
+<note
+><para
+>يجب عليك ترك هذا الخيار ممكّنًا كلما أمكن ذلك. يؤدي تعطيل هذا الخيار إلى زيادة حركة مرور الشبكة. تزيد حركة المرور التي تسببها المجمعات التي لا تستخدم الخبيئة من التكاليف للمزودين وقد تقلل من عدد التلقيمات التي تُقدم في المستقبل.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="accounts-tab">
+<title
+>الحسابات</title>
+<para
+>تسرد صفحة الحسابات <link linkend="online-accounts"
+>الحسابات على الإنترنت</link
+> المضبوطة مع نوعها.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>أضف...</guibutton
+></term>
+<listitem
+><para
+>يفتح معالج <link linkend="adding-online-account"
+>إضافة حساب على الإنترنت</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>عدّل...</guibutton
+></term>
+<listitem
+><para
+>يفتح إعدادات الحساب المحدد لتغيير عنوان الخادم أو رمز <acronym
+>API</acronym
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>أزل</guibutton
+></term>
+<listitem
+><para
+>يزيل الحساب المحدد، بما في ذلك مجلده في قائمة التلقيمات وبيانات اعتماده المخزنة. لا يتأثر الخادم.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>معترض العناوين</title>
+<para
+>يمكن ضبط أكريغاتور لاستبدال أو إزالة الصور أو الإطارات من صفحات الويب التي تطابق سلسلة من المرشحات.</para>
+
+<screenshot>
+<screeninfo
+>لسان معترض العناوين</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان معترض العناوين</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>للحصول على وصف مفصل لهذه الميزة، راجع <ulink url="help:/kcontrol/khtml-adblock"
+>مرشحات AdBlock</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>الأرشيف</title>
+<para
+>أرشفة المقالات تعني تخزين روابط المقالات. هنا يمكنك تحديد عدد المقالات المخزنة والطريقة المستخدمة للأرشفة. هذه الإعدادات هي إعدادات عالمية، تستخدمها جميع التلقيمات داخل أكريغاتور. إذا كنت ترغب في استخدام إعداد مخصص لتلقيمة ما، يمكنك ضبطه في حوار خصائص كل تلقيمة في لسان الأرشيف.</para>
+<screenshot>
+<screeninfo
+>لسان الأرشيف</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان الأرشيف</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>إعدادات الأرشيف المبدئية</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أبقِ جميع المقالات</guilabel
+></term>
+<listitem
+><para
+>تُحفظ جميع المقالات للأبد.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>قيد حجم أرشيف التلقيمة إلى:</guilabel
+></term>
+<listitem
+><para
+>إذا تجاوز عدد المقالات الحد المختار، تُحذف أقدم المقالات. لاحظ أنه يتم تجاهل المقالات المعلمة عند عد عدد المقالات: إذا كان حدك 500، وكان لديك 510 مقالة غير معلمة و 50 مقالة معلمة، فسيتجاهل أكريغاتور الـ 50 معلمة ويحذف فقط أقدم 10 مقالات غير معلمة. لذا في هذا المثال، سيُحتفظ بـ 550 مقالة.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>احذف المقالات الأقدم من:</guilabel
+></term>
+<listitem
+><para
+>تُحذف المقالات الأقدم من عدد الأيام المحدد من الأرشيف، ما لم يكن لديها علامة الحفظ. يتحقق أكريغاتور من المقالات منتهية الصلاحية عند بدء التشغيل ثم مرة واحدة كل ساعة، لذا قد يتأخر انتهاء الصلاحية.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>عطّل الأرشفة</guilabel
+></term>
+<listitem
+><para
+>لا تُخزن أي مقالات - تُهمل جميع المقالات عند الخروج من أكريغاتور.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>لا تنهِ صلاحية المقالات المهمة</guilabel
+></term>
+<listitem
+><para
+>يؤدي النقر بزر الفأرة الأيمن على مقال إلى فتح قائمة سياقية حيث يمكنك تمييز هذا المقال كمهم. المقالات المميزة كمهمة لن تنتهي صلاحيتها، بل سيُحتفظ بها.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>المظهر</title>
+<para
+>في هذه الصفحة يمكنك ضبط مظهر عارض المقالات وألسنة المتصفح. يمكنك تحديد الألوان وأحجام الخطوط وعائلاتها المراد استخدامها. </para>
+<screenshot>
+<screeninfo
+>لسان المظهر</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان المظهر</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>ألوان قائمة المقالات</guilabel
+></term>
+<listitem
+><para
+>يتيح لك تحديد <guilabel
+>استخدم ألوانًا مخصصة</guilabel
+> تحديد ألوانك الخاصة لـ <guilabel
+>المقالات غير المقروءة</guilabel
+> و <guilabel
+>المقالات الجديدة</guilabel
+></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>حجم الخط</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أصغر حجم للخط</guilabel
+></term>
+<listitem
+><para
+>اضبط الحجم الأدنى لعارض المقالات</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>حجم خط متوسط</guilabel
+></term>
+<listitem
+><para
+>اضبط حجم الخط المبدئي لعارض المقالات</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الخطوط</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>الخط القياسي:</guilabel
+></term>
+<listitem
+><para
+>في عارض المقالات، يُصير المحتوى باستخدام الخط القياسي بحجم خط متوسط. إذا غيرت الخط القياسي، فسيُطبق التغيير في عارض المقالات.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الخط الثابت:</guilabel
+></term>
+<listitem
+><para
+>إذا كانت المقالة تستخدم خطًا ثابت العرض في عارض المقالات، فسيُصير المحتوى باستخدام عائلة الخط هذه بحجم خط متوسط. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>خط مذيل (Serif):</guilabel
+></term>
+<listitem
+><para
+>إذا كانت المقالة تستخدم خطوط Serif، فسيُصير المحتوى باستخدام العائلة التي تختارها هنا بحجم خط متوسط.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>خط غير مذيل (Sans serif):</guilabel
+></term>
+<listitem
+><para
+>إذا كانت المقالة تستخدم خطوط Sans-serif، فسيُصير المحتوى باستخدام العائلة التي تختارها هنا بحجم خط متوسط.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>سطّر الروابط</guilabel
+></term>
+<listitem
+><para
+>حدد هذا إذا كنت تريد تسطير الروابط مبدئيًا.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>المتصفح</title>
+<para
+>يتيح لك هذا اللسان تخصيص سلوك ألسنة المتصفح الداخلية.</para>
+<screenshot>
+<screeninfo
+>لسان المتصفح</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان المتصفح</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>نقرة الفأرة اليسرى</guilabel
+></term>
+<listitem
+><para
+>يمكنك اختيار ثلاثة إجراءات لعملية نقر الفأرة اليسرى: <guilabel
+>افتح في لسان</guilabel
+> (فتح الرابط في لسان وجعل هذا اللسان نشطًا)، و <guilabel
+>افتح في لسان خلفي</guilabel
+> (فتح الرابط في لسان مع إبقاء اللسان الحالي نشطًا) و <guilabel
+>افتح في متصفح خارجي</guilabel
+> لفتح مقال في نافذة جديدة بمتصفحك المبدئي.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>نقرة الفأرة الوسطى</guilabel
+></term>
+<listitem
+><para
+>كما ورد أعلاه، يمكنك ضبط أحد الإجراءات الثلاثة لنقرة الفأرة الوسطى.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>التصفح الخارجي</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>استخدم متصفح الويب المبدئي</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا، فسيستخدم أكريغاتور متصفح الويب الذي ضبطته في إعدادات النظام. قد يكون هو المبدئي لكيدي، أو كنكرر، أو متصفح آخر حسب ما تضبطه هنا.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>استخدم هذا الأمر:</guilabel
+></term>
+<listitem
+><para
+>يمكنك استخدام متصفح ويب آخر لأكريغاتور غير متصفح كيدي المبدئي. إذا كنت ترغب في ذلك، فحدد هذا الخيار وأدخل أمر المتصفح، بشرط أن يكون في مسارك ($<envar
+>PATH</envar
+>).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الألسنة</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أظهر شريط الألسنة دائمًا</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا الخيار، فسيُعرض اللسان دائمًا، حتى عند فتح لسان واحد فقط. يتيح لك هذا إنشاء ألسنة مباشرة من شريط الألسنة. خلاف ذلك، سيُعرض شريط الألسنة فقط عند فتح عدة ألسنة.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أظهر زر الإغلاق على كل لسان</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا الخيار، فسيظهر زر الإغلاق عند تحريك الفأرة على الجانب الأيسر من عنوان اللسان حتى تتمكن من إغلاق الألسنة بسهولة أكبر.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>افتح الروابط في لسان جديد بدلًا من نافذة جديدة</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد، سيفتح أكريغاتور الرابط الذي سيفتح عادة في نافذة جديدة (متصفح خارجي) في لسان جديد بدلًا من ذلك.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الأمن</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>تحقق من العناوين باستخدام واجهة برمجة تطبيقات التصفح الآمن من جوجل</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا الخيار، فستُستخدم واجهة برمجة تطبيقات <ulink url="https://safebrowsing.google.com/"
+>التصفح الآمن من جوجل</ulink
+> للتحقق من العناوين مقابل قوائم جوجل المحدثة باستمرار لموارد الويب غير الآمنة. من الأمثلة على موارد الويب غير الآمنة مواقع الهندسة الاجتماعية (مواقع التصيد والاحتيال) والمواقع التي تستضيف برامج ضارة أو برامج غير مرغوب فيها.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>مكّن جافا سكريبت</guilabel
+></term>
+<listitem
+><para
+>إذا حُدد، سيستخدم أكريغاتور جافا سكريبت عند معالجة موارد الويب. لاستخدام جافا سكريبت عدة <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>آثار أمنية</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>متنوّع</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>مفتاح الوصول مُمكّن</guilabel
+></term>
+<listitem
+><para
+>هذا خيار لسهولة الوصول. عند تحديده، سيعالج أكريغاتور خاصية accessKey لصفحة الويب، والتي تحدد اختصار لوحة المفاتيح المستخدم للانتقال إلى عنصر معين.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>متقدّم</title>
+<para
+>يتيح لك لسان متقدم ضبط خيارات أكثر تقدمًا. إذا لم تكن متأكدًا من تأثيرها، يمكنك فقط ترك الخيارات المبدئية.</para>
+<screenshot>
+<screeninfo
+>لسان متقدم</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>لسان متقدم</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>الأرشيف</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>سند الأرشفة:</guilabel
+></term>
+<listitem
+><para
+>يستخدم أكريغاتور حاليًا قاعدة بيانات Metakit فقط. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>قائمة المقالات</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>ميّز المقال المحدد كمقروء بعد</guilabel
+></term>
+<listitem
+><para
+>الإعداد المبدئي هو 0 ثانية، مما يعني أنه بمجرد النقر فوق مقال يتم تمييزه كمقروء. يمكنك اختيار تمييز أي مقال كمقروء بعد عدد محدد من الثواني.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>صفر شريط البحث عند تغيير التلقيمات</guilabel
+></term>
+<listitem
+><para
+>سيؤدي هذا إلى مسح شريط البحث عند تغيير التلقيمة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>مرجع الأوامر</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>القوائم ومفاتيح الاختصار</title>
+
+<sect2>
+<title
+>قائمة ملف</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>استورد تلقيمات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> حوار استيراد التلقيمات لتحميل <quote
+>مخططات OPML</quote
+> مع اشتراكات التلقيمة. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>صدر تلقيمات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> حوار حفظ باسم وصدر تلقيماتك وبنية المجلدات كملف <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>أضف حساباً على الإنترنت...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> معالج <link linkend="adding-online-account"
+>إضافة حساب على الإنترنت</link
+> لوصل أكريغاتور بخدمة قارئ تلقيمات على الإنترنت مثل Miniflux.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>أنهِ</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>أنهِ</action
+> أكريغاتور</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة حرر</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>حرر التلقيمة...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>حرر</action
+> التلقيمة الحالية لتغيير خصائصها في حوار الخصائص</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>احذف التلقيمة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>احذف</action
+> التلقيمة الحالية</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة عرض</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>عرض عادي</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>عرض شاشة عريضة</guimenuitem
+> </menuchoice
+> و <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>عرض مدمج</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اختر</action
+> وضع العرض لأكريغاتور</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>كبر الخط</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>زد</action
+> حجم الخط في عارض المقالات</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>صغر الخط</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>نقص</action
+> حجم الخط في عارض المقالات</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة اذهب</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Left</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>المقال السابق</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى المقال السابق في قائمة المقالات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>المقال السابق غير المقروء</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى المقال السابق غير المقروء في قائمة المقالات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Right</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>المقال التالي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى المقال التالي في قائمة المقالات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>المقال التالي غير المقروء</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى المقال التالي غير المقروء في قائمة المقالات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>التلقيمة السابقة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى التلقيمة السابقة في قائمة التلقيمات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>التلقيمة السابقة غير المقروءة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى التلقيمة السابقة غير المقروءة في قائمة التلقيمات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>التلقيمة التالية</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى التلقيمة التالية في قائمة التلقيمات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>التلقيمة التالية غير المقروءة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اذهب</action
+> إلى التلقيمة التالية غير المقروءة في قائمة التلقيمات</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة التلقيمات</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>أضف تلقيمة...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> حوار إضافة تلقيمة</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>مجلد جديد...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> حوار إضافة مجلد</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>ميّز التلقيمة كمقروءة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>ميّز</action
+> التلقيمة الحالية كمقروءة</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>ميّز جميع التلقيمات كمقروءة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>ميّز</action
+> جميع التلقيمات كمقروءة مسبقًا</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>اجلب التلقيمة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اجلب</action
+> التلقيمة الحالية</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>اجلب جميع التلقيمات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اجلب</action
+> جميع التلقيمات</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>تلقيمة</guimenu
+> <guimenuitem
+>أحبط عمليات الجلب</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>أوقف</action
+> أكريغاتور عن جلب التلقيمات</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة مقالات</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>مقال</guimenu
+> <guimenuitem
+>افتح في لسان</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> المقال الحالي في لسان داخل أكريغاتور</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Return</keycap
+></shortcut
+> <guimenu
+>مقال</guimenu
+> <guimenuitem
+>افتح في لسان خلفي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>حمّل</action
+> المقال الحالي في لسان جديد، ولكن لا تنشط ذلك اللسان آليًا. هذا مفيد لتصفح تلقيمة، وفتح جميع المقالات المثيرة للاهتمام في ألسنة خلفية وقراءتها جميعًا لاحقًا. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>مقال</guimenu
+> <guimenuitem
+>افتح في متصفح خارجي.</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> المقال الحالي في متصفح خارجي</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>مقال</guimenu
+> <guimenuitem
+>ميّز كمهم</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>ميّز</action
+> المقال الحالي كمهم</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>مقال</guimenu
+> <guimenuitem
+>ميّز كـ</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>ميّز</action
+> المقال الحالي كمقروء <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>، أو جديد <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> أو غير مقروء <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>مقال</guimenu
+> <guimenuitem
+>احذف</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>احذف</action
+> المقال الحالي</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>مقال</guimenu
+> <guimenuitem
+>أرسل عنوان الرابط...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> عميل بريدك وأرفق الرابط في الرسالة.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>مقال</guimenu
+> <guimenuitem
+>أرسل ملفًا...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>افتح</action
+> عميل بريدك وأرفق الملف في الرسالة. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>قائمتا إعدادات ومساعدة</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>أظهر المرشح السريع</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>بادل</action
+> حالة المرشح السريع (أظهره/أخفه) <screenshot>
+<screeninfo
+>المرشح السريع</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>المرشح السريع</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>بالإضافة إلى ذلك، يحتوي أكريغاتور على عناصر قائمة كيدي الشائعة <guimenu
+>إعدادات</guimenu
+> و <guimenu
+>مساعدة</guimenu
+>، لمزيد من المعلومات اقرأ الأقسام المتعلقة بـ <ulink url="help:/fundamentals/menus.html#menus-settings"
+>قائمة الإعدادات</ulink
+> و <ulink url="help:/fundamentals/menus.html#menus-help"
+>قائمة المساعدة</ulink
+> في أساسيات كيدي. </para>
+
+<para
+>تتوفر العديد من الإجراءات المتوفرة في القائمة أيضًا في القوائم السياقية لقائمة التلقيمات وقائمة المقالات وعارض المقالات. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>المساهمون والترخيص</title>
+
+<para
+>أكريغاتور </para>
+<para
+>حقوق نشر البرنامج 2004-2010 لمؤلفي أكريغاتور </para>
+
+<para
+>حقوق نشر التوثيق 2006 لـ Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>حقوق نشر التوثيق 2006 لـ &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
