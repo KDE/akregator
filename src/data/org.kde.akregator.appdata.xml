@@ -406,40 +406,6 @@
       <url>https://kde.org/announcements/megarelease/6/</url>
       <description>
         <p>Ported to Qt6.</p>
-        <p xml:lang="ar">هذه النسخة تنقل أكريغاتور إلى Qt6 وتعدل قليلًا تصميم التطبيق.</p>
-        <p xml:lang="bg">Тази версия портира Akgregator към Qt6 и променя леко дизайна на приложението.</p>
-        <p xml:lang="ca">Aquesta versió adapta l'Akgregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
-        <p xml:lang="ca-valencia">Esta versió adapta Akregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
-        <p xml:lang="cs">V tomto vydání byl Akregátor portován na Qt6 a bylo proveden pár úprav v návrhu aplikace.</p>
-        <p xml:lang="de">Diese Version portiert Akregator zu Qt6 und passt das Aussehen der Anwendung ein wenig an.</p>
-        <p xml:lang="es">Esta versión adapta Akregator a Qt6 y ajusta un poco el diseño de la aplicación.</p>
-        <p xml:lang="eu">Kaleratze honek Akregator to Qt6ra egokitzen du eta aplikazioaren diseinua pixka bat doitzen du.</p>
-        <p xml:lang="fi">Tämä julkaisu siirtää Akregatorin Qt6:een ja viilaa hieman sovelluksen yleisilmettä.</p>
-        <p xml:lang="fr">Cette version apporte le portage de Akgregator sous Qt6 et ajuste un peu la conception graphique de l'application.</p>
-        <p xml:lang="he">המהדורה הזאת מסבה את Akregator ל־Qt6 ומשפרת במעט את העיצוב של היישום.</p>
-        <p xml:lang="hu">Ez az Akregator első Qt 6-os kiadása, amely kissé módosítja az alkalmazás megjelenését is.</p>
-        <p xml:lang="ia">Iste version porta Akregator a Qt6 e pincia un pauco le designo del app.</p>
-        <p xml:lang="is">Þessi útgáfa yfirfærir Akgregator í Qt6 og breytir örlítið hönnun forritsins.</p>
-        <p xml:lang="it">Questo rilascio converte Akregator a Qt6 e modifica leggermente l'aspetto dell'applicazione.</p>
-        <p xml:lang="ka">ეს გამოშვება გადაიტანს Akgregator-ს Qt6-ზე და აპის დიზაინი ოდნავ შეიცვალა.</p>
-        <p xml:lang="ko">이 릴리스에서는 Akregator를 Qt6으로 이식했으며 앱 디자인을 개선했습니다.</p>
-        <p xml:lang="lt">Ši laida įgyvendina Akregator Qt6 realizavimą ir šiek tiek patobulina programos dizainą.</p>
-        <p xml:lang="lv">Šajā relīzē ir portēts „Akregator“ uz „Qt6“ un nedaudz pielāgots programmas dizains.</p>
-        <p xml:lang="nl">Deze uitgave brengt Akgregator naar Qt6 en wijzigt het ontwerp van de toepassing een beetje.</p>
-        <p xml:lang="pl">To wydanie przenosi Akregatora na Qt6 oraz nieznacznie poprawia projekt aplikacji.</p>
-        <p xml:lang="pt-BR">Esta versão porta o Akgregator para Qt6 e faz alguns ajustes no design do aplicativo.</p>
-        <p xml:lang="ru">В этом выпуске Akregator перенесён на Qt6 и слегка изменён дизайн приложения.</p>
-        <p xml:lang="sk">Toto vydanie portuje Akregator na Qt6 a trochu upravuje dizajn aplikácie.</p>
-        <p xml:lang="sl">Ta izdaja prenaša Akgregator na Qt6 in nekoliko spreminja obliko aplikacije.</p>
-        <p xml:lang="sr">Ово издање преноси Акрегатор на КуТ6 и мало дотерује изглед програма.</p>
-        <p xml:lang="sr-Latn">Ovo izdanje prenosi Akregator na Qt6 i malo doteruje izgled programa.</p>
-        <p xml:lang="sr-ijekavian">Ово издање преноси Акрегатор на КуТ6 и мало дотјерује изглед програма.</p>
-        <p xml:lang="sr-ijekavianlatin">Ovo izdanje prenosi Akregator na Qt6 i malo dotjeruje izgled programa.</p>
-        <p xml:lang="sv">Utgåvan konverterar Akgregator till Qt6 och finjusterar programmets konstruktion något</p>
-        <p xml:lang="tr">Bu yayım, Akregator’ı Qt6’ya aktarır ve uygulamanın tasarımını biraz değiştirir.</p>
-        <p xml:lang="uk">У цьому випуску Akgregator портовано на Qt6, а також дещо скориговано дизайн програми.</p>
-        <p xml:lang="zh-CN">这个版本将 Akgregator 移植到 Qt6 并稍微调整了应用程序的设计。</p>
-        <p xml:lang="zh-TW">這個版本將 Akgregator 移植到了 Qt6，並稍微調整了應用程式的設計。</p>
       </description>
     </release>
     <release version="5.24.5" date="2024-02-15"/>
