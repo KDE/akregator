@@ -230,7 +230,7 @@
           <li xml:lang="ar">أصبح برنامج Miniflux متاحًا الآن. انظر الخيار الجديد «أضف حساب عبر الإنترنت» في قائمة ملف لفتح معالج حساب Miniflux.</li>
           <li xml:lang="bg">Вече се поддържа Miniflux. Вижте новата опция „Добавяне на онлайн акаунт“ в менюто „Файл“, за да отворите помощника за акаунти на Miniflux.</li>
           <li xml:lang="ca">Ara s'admet el Miniflux. Vegeu l'opció nova «Afegeix un compte en línia» al menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
-          <li xml:lang="ca-valencia">Ara s'admet el Miniflux. Vegeu l'opció nova «Afig un compte en línia» en el menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
+          <li xml:lang="ca-valencia">Ara s'admet Miniflux. Vegeu l'opció nova «Afig un compte en línia» en el menú Fitxer per a obrir l'assistent de comptes de Miniflux.</li>
           <li xml:lang="cs">Nyní je podporován Miniflux. V nabídce Soubor najdete novou možnost "Přidat online účet", pomocí které můžete spustit průvodce nastavením účtu Miniflux.</li>
           <li xml:lang="es">Se ha implementado la compatibilidad con Miniflux. Consulte la nueva opción «Añadir cuenta en línea» del menú «Archivo» para abrir el asistente de cuentas Miniflux.</li>
           <li xml:lang="eu">Orain Miniflux onartzen da. Miniflux kontuaren morroia irekitzeko, erabili Fitxategia menuko «Lerroko kontua gehitu» aukera berria.</li>
@@ -406,6 +406,15 @@
       <url>https://kde.org/announcements/megarelease/6/</url>
       <description>
         <p>Ported to Qt6.</p>
+        <p xml:lang="ca">Adaptació a les Qt6.</p>
+        <p xml:lang="ca-valencia">Adaptació a les Qt6.</p>
+        <p xml:lang="cs">Portování na Qt 6</p>
+        <p xml:lang="he">הוסב ל־Qt6.</p>
+        <p xml:lang="nl">Overgezet naar Qt6.</p>
+        <p xml:lang="pt-BR">Porte para o Qt6.</p>
+        <p xml:lang="ru">Перенос на Qt6.</p>
+        <p xml:lang="sl">Preneseno na Qt6.</p>
+        <p xml:lang="tr">Qt6’ya aktarıldı.</p>
       </description>
     </release>
     <release version="5.24.5" date="2024-02-15"/>
