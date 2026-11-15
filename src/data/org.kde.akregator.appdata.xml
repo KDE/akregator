@@ -406,6 +406,8 @@
       <url>https://kde.org/announcements/megarelease/6/</url>
       <description>
         <p>Ported to Qt6.</p>
+        <p xml:lang="ar">نُقل إلى Qt6.</p>
+        <p xml:lang="bg">Портиране към Qt 6.</p>
         <p xml:lang="ca">Adaptació a les Qt6.</p>
         <p xml:lang="ca-valencia">Adaptació a les Qt6.</p>
         <p xml:lang="cs">Portování na Qt 6</p>
@@ -414,6 +416,10 @@
         <p xml:lang="pt-BR">Porte para o Qt6.</p>
         <p xml:lang="ru">Перенос на Qt6.</p>
         <p xml:lang="sl">Preneseno na Qt6.</p>
+        <p xml:lang="sr">Пренесено на КуТ 6.</p>
+        <p xml:lang="sr-Latn">Preneseno na Qt 6.</p>
+        <p xml:lang="sr-ijekavian">Пренесено на КуТ 6.</p>
+        <p xml:lang="sr-ijekavianlatin">Preneseno na Qt 6.</p>
         <p xml:lang="tr">Qt6’ya aktarıldı.</p>
       </description>
     </release>
