@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-12 01:02+0000\n"
-"PO-Revision-Date: 2026-11-03 21:13+0300\n"
+"PO-Revision-Date: 2026-11-15 19:54+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.2\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -245,49 +245,49 @@ msgstr "Özel renkler kullan"
 #: configuration/ui/settings_appearance.ui:121
 #, kde-format
 msgid "Font Size"
-msgstr "Yazıtipi Puntosu"
+msgstr "Yazı Tipi Puntosu"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "En küçük yazıtipi puntosu:"
+msgstr "En küçük yazı tipi puntosu:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
 #, kde-format
 msgid "Medium font size:"
-msgstr "Orta yazıtipi puntosu:"
+msgstr "Orta yazı tipi puntosu:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
 #, kde-format
 msgid "Fonts"
-msgstr "Yazıtipleri"
+msgstr "Yazı Tipleri"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: configuration/ui/settings_appearance.ui:234
 #, kde-format
 msgid "Standard font:"
-msgstr "Standart yazıtipi:"
+msgstr "Standart yazı tipi:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
 #: configuration/ui/settings_appearance.ui:244
 #, kde-format
 msgid "Fixed font:"
-msgstr "Sabit yazıtipi:"
+msgstr "Sabit yazı tipi:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: configuration/ui/settings_appearance.ui:254
 #, kde-format
 msgid "Serif font:"
-msgstr "Serif yazıtipi:"
+msgstr "Serif yazı tipi:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: configuration/ui/settings_appearance.ui:264
 #, kde-format
 msgid "Sans serif font:"
-msgstr "Sans serif yazıtipi:"
+msgstr "Sans serif yazı tipi:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_archive.ui:30
