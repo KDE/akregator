@@ -223,7 +223,7 @@
     <binary>akregator</binary>
   </provides>
   <releases>
-    <release version="6.9.0" type="snapshot">
+    <release version="6.9.0" date="2026-12-10">
       <description>
         <ul>
           <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Miniflux account wizard.</li>
