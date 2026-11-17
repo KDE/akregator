@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>org.kde.akregator</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2.0+</project_license>
+  <project_license>GPL-2.0-or-later</project_license>
   <name>Akregator</name>
   <name xml:lang="ar">أكريغاتور</name>
   <name xml:lang="ast">Akregator</name>
