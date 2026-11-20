@@ -414,9 +414,11 @@
         <p xml:lang="es">Adaptación a Qt6.</p>
         <p xml:lang="fr">Porté sous Qt6</p>
         <p xml:lang="he">הוסב ל־Qt6.</p>
+        <p xml:lang="it">Conversione a Qt6.</p>
         <p xml:lang="nl">Overgezet naar Qt6.</p>
         <p xml:lang="pt-BR">Porte para o Qt6.</p>
         <p xml:lang="ru">Перенос на Qt6.</p>
+        <p xml:lang="sk">Portované na Qt6.</p>
         <p xml:lang="sl">Preneseno na Qt6.</p>
         <p xml:lang="sr">Пренесено на КуТ 6.</p>
         <p xml:lang="sr-Latn">Preneseno na Qt 6.</p>
@@ -424,6 +426,7 @@
         <p xml:lang="sr-ijekavianlatin">Preneseno na Qt 6.</p>
         <p xml:lang="tr">Qt6’ya aktarıldı.</p>
         <p xml:lang="uk">Портовано на Qt6.</p>
+        <p xml:lang="zh-TW">移植到 Qt6。</p>
       </description>
     </release>
     <release version="5.24.5" date="2024-02-15"/>
