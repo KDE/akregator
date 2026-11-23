@@ -395,10 +395,9 @@ msgstr "证券"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr "使用 Google 的安全浏览 API 验证 URL 安全性"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -766,18 +765,12 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"此选项允许用户指定自定义的用户代理字符串代替默认值。之所以这里要有这个是因为"
-"有些代理可能会由于名称中含有“特殊关键字”而中断连接。"
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1125,10 +1118,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "“延迟标为已读”特性"
+msgstr ""
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1384,10 +1376,9 @@ msgid "Set Focus to Quick Search"
 msgstr "聚焦到快速搜索栏"
 
 #: src/actions/actionmanagerimpl.cpp:452
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
-msgstr "最新变化"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:493
 #, kde-format
@@ -1665,13 +1656,7 @@ msgid "No result found"
 msgstr "未找到结果"
 
 #: src/articlelistview.cpp:384
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1679,9 +1664,6 @@ msgid ""
 "view the web page of the article, you can open the article internally in a "
 "tab or in an external browser window."
 msgstr ""
-"<h2>文章列表</h2>您可在此浏览目前所选订阅的文章。您还可以使用鼠标右键菜单管理"
-"文章，将其设置为永久 (标记为重要) 或删除文章。要查看文章所属网页，您可以在内"
-"部标签页中打开文章，或者在外部浏览器窗口中打开。"
 
 #: src/articlemodel.cpp:77
 #, kde-format
@@ -2079,10 +2061,9 @@ msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>主页：</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:195
-#, fuzzy, kde-format
-#| msgid "<b>Copyright:</b> %1</a>"
+#, kde-format
 msgid "<b>Copyright:</b> %1"
-msgstr "<b>版权：</b> %1</a>"
+msgstr ""
 
 #: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
@@ -2273,11 +2254,10 @@ msgid "Account Type"
 msgstr ""
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "设置(&S)"
+msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:21
 #, kde-format
@@ -2298,16 +2278,14 @@ msgid "My Miniflux"
 msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "分组名称"
+msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Feed &URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "订阅 &URL："
+msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
