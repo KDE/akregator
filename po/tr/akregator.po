@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-12 01:02+0000\n"
-"PO-Revision-Date: 2026-11-19 19:36+0300\n"
+"PO-Revision-Date: 2026-11-23 18:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -293,7 +293,7 @@ msgstr "Sans serif yazı tipi:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "Öntanımlı Arşiv Ayarları"
+msgstr "Varsayılan Arşiv Ayarları"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
@@ -388,7 +388,7 @@ msgstr "Bu k&omutu kullanın:"
 #: configuration/ui/settings_browser.ui:97
 #, kde-format
 msgid "Use default web &browser"
-msgstr "Öntanımlı web &tarayıcısını kullan"
+msgstr "Varsayılan web &tarayıcısını kullan"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -735,7 +735,7 @@ msgstr "Zaman Aşımı Süresi"
 #: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "Gün cinsinden öntanımlı zaman aşımı süresi."
+msgstr "Gün cinsinden varsayılan zaman aşımı süresi."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:124
@@ -801,7 +801,7 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"Bu seçenek kullanıcıların kullanıcı istemcisi için kullanılan öntanımlı "
+"Bu seçenek kullanıcıların kullanıcı istemcisi için kullanılan varsayılan "
 "ifade yerine özel bir ifade belirlemesine izin verir. Bu seçeneğin "
 "oluşturulma amacı bazı vekil sunucuların “gator” ifadesi nedeni ile "
 "bağlantıyı kesmesidir."
@@ -928,7 +928,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Öntanımlı KDE tarayıcısını kullan"
+msgstr "Varsayılan KDE tarayıcısını kullan"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -2646,7 +2646,7 @@ msgstr "Arşi&v"
 #: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
-msgstr "Öntanımlı ayarları k&ullan"
+msgstr "Varsayılan ayarları k&ullan"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219
