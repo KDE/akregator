@@ -389,6 +389,7 @@
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
           <li xml:lang="ug">يېڭىلىق ئەپچە قوشىدۇ.</li>
           <li xml:lang="uk">Додано новий віджет зі списком можливостей нової версії.</li>
+          <li xml:lang="zh-CN">添加新的 “新增内容” 小部件。</li>
           <li xml:lang="zh-TW">新增新功能元件。</li>
         </ul>
       </description>
@@ -427,6 +428,7 @@
         <p xml:lang="sr-ijekavianlatin">Preneseno na Qt 6.</p>
         <p xml:lang="tr">Qt6’ya aktarıldı.</p>
         <p xml:lang="uk">Портовано на Qt6.</p>
+        <p xml:lang="zh-CN">移植至Qt6。</p>
         <p xml:lang="zh-TW">移植到 Qt6。</p>
       </description>
     </release>
