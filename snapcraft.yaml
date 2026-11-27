@@ -109,7 +109,7 @@ parts:
         after:
             - kde-neon
         parse-info:
-            - usr/share/metainfo/org.kde.akregator.appdata.xml
+            - usr/share/metainfo/org.kde.akregator.metainfo.xml
         plugin: cmake
         build-packages:
             - libkf5doctools-dev
